@@ -1,0 +1,189 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+main{
+    flex:1;
+}
+.navbar{
+    height:4rem;
+    background-color: rgb(236, 233, 233) !important;
+    color:black;
+}
+.fa-solid {
+    color:rgb(79, 103, 174);
+    font-size:2rem;
+}
+.foot{
+    height:5rem;
+    background-color: rgba(144, 141, 141, 0.635);
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: space-evenly;
+}
+.f-socials-link i{
+      font-size: 1.2rem;
+      cursor: pointer;
+}
+.f-brand-name{
+    height:1rem;
+}
+.f-a a{
+    text-decoration:none;
+}
+.f-a a:hover{
+     text-decoration:underline;
+}
+.listing-heading{
+    margin-left:1rem !important;
+}
+.index{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:1rem;
+    padding-bottom: 1rem;
+    justify-items: center;
+}
+.index a{
+text-decoration: none;
+}
+.card-body{
+    padding:0;
+}
+.card-img-top{
+    height:18rem;
+    width:100%;
+    object-fit:cover;
+    border-radius:8px;
+    border: none;
+}
+.card-img-overlay{
+    opacity:0;
+}
+.card:hover .card-img-overlay{
+    opacity: 0.2;
+    background-color: white;
+}
+.form-wrapper{
+    padding-left: 1rem;
+    margin-bottom:1rem;
+    width:55%;
+    margin-left:auto;
+    margin-right:auto;
+}
+.new-submit{
+    background-color:rgba(231, 114, 114, 0.82);
+   cursor:pointer;
+   border:1px solid rgba(231, 114, 114, 0.82);
+   border-radius:5px;
+   
+}
+.new-submit:hover{
+    background-color: rgb(248, 204, 204);
+}
+.show-card{
+    margin-left:auto;
+    margin-right:auto;
+    width:95%;
+    height:45% !important;
+    margin-top:1rem;
+    margin-bottom:1rem;
+}
+.show-btn{
+    margin-left:auto;
+    margin-right:auto;
+    display:flex;
+    justify-content: space-between;
+    width:8rem;
+    margin-bottom:1rem;
+}
+.show-btn a{
+    text-decoration: none;
+    color:white;
+}
+.show-edit{
+    background-color:rgba(231, 114, 114, 0.82);
+   cursor:pointer;
+   border:1px solid rgba(231, 114, 114, 0.82);
+   border-radius:5px;
+   width:48px;
+}
+.show-edit:hover{
+    background-color: rgb(248, 204, 204);
+    color:black;
+}
+.show-del{
+    background-color:rgb(23, 18, 18);
+   cursor:pointer;
+   border:1px solid rgba(16, 14, 14, 0.82);
+   border-radius:5px;
+   color:white;
+   
+}
+.show-del:hover{
+    background-color: rgb(238, 231, 231);
+    color:black;
+}
+.edit-section{
+    width:65%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:1rem;
+}
+.edit-btn{
+    background-color:rgba(231, 114, 114, 0.82);
+   cursor:pointer;
+   border:1px solid rgba(231, 114, 114, 0.82);
+   border-radius:5px;
+   width:48px;
+   margin-left:auto;
+   display:block;
+}
+.edit-heading{
+    margin-left:1rem;
+}
+
+
+@media (min-width:768px){
+    .index{
+grid-template-columns: 1fr 1fr ;
+    }
+    .edit-flex{
+        display:flex;
+        justify-content:space-between;
+    }
+    .edit-section{
+        width:55%;
+    }
+}
+@media (min-width:992px){
+        .index{
+grid-template-columns: 1fr 1fr 1fr;
+    }
+      .edit-flex{
+        display:flex;
+        justify-content:space-between;
+    }
+      .edit-section{
+        width:55%;
+    }
+}
+@media (min-width:1200px){
+        .index{
+grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+      .edit-flex{
+        display:flex;
+        justify-content:space-between;
+    }
+      .edit-section{
+        width:55%;
+    }
+}

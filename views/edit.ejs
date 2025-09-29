@@ -1,0 +1,34 @@
+<%layout('layouts/template.ejs')%>
+    <h1 class='edit-heading'>Edit Listing</h1>
+    <form method="post" action="/listing/<%=items._id%>?_method=PATCH">
+        <div class='edit-section'>
+        <div>
+         <label for="title" class="form-label">Title : </label>
+        <input type="text" name="docu[title]" id="title" value="<%=items.title%>" class="form-control">
+        </div>
+        <div>
+        <label for="des" class="form-label">Description : </label>
+        <textarea id="des" name="docu[description]"  class="form-control"><%=items.description%></textarea>
+        </div>
+        <div>
+        <label for='img' class="form-label">Image : </label>
+        <input type="text" id="img" name="docu[image]" value="<%=items.image%>"  class="form-control">
+        </div>
+        <div>
+        <label for='location' class="form-label">Location : </label>
+        <input type="text" id="location" name="docu[location]" value="<%=items.location%>"  class="form-control">
+        </div>
+        <div class="edit-flex">
+        <div>
+        <label for="cntry" class="form-label">Country : </label>
+        <input type="text" id="cntry" name="docu[country]" value="<%=items.country%>"  class="form-control">
+        </div>
+        <div>
+        <label for="price" class="form-label">Price : </label>
+        <input type="number" id="price" name="docu[price]" value="<%=items.price%>"  class="form-control">
+        </div>
+        </div>
+        <br>
+        <button type="submit" class="edit-btn">Post</button>
+    </form>
+    </div>

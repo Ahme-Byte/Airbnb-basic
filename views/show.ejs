@@ -1,0 +1,20 @@
+<%layout('layouts/template.ejs')%>
+<div class="card show-card">
+  <img src="<%=items.image.url%>" class="card-img-top" alt="listing-img">
+  <div class="card-body">
+    <h5 class="card-title"><%=items.title%></h5>
+    <p class="card-text">    <ul>
+        <li><%=items.description%></li>
+         <li><%=items.location%></li>
+          <li><%=items.country%></li>
+           <li>&#8360; <%=items.price.toLocaleString('en-IN')%></li>
+    </ul>  </p>
+  </div>
+</div>
+<div class="show-btn">
+   <button type='submit' class="show-edit"><a href="/listing/edit/<%=items._id%>">Edit</a></button>
+    <br>
+    <form method="post" action="/listing/<%=items._id%>?_method=DELETE">
+        <button class="show-del">Delete</button>
+    </form>
+    </div>
