@@ -1,10 +1,11 @@
 <%layout('layouts/template.ejs')%>
     <h1 class='edit-heading'>Edit Listing</h1>
-    <form method="post" action="/listing/<%=items._id%>?_method=PATCH">
+    <form method="post" action="/listing/<%=items._id%>?_method=PATCH" class="needs-validation" novalidate>
         <div class='edit-section'>
         <div>
          <label for="title" class="form-label">Title : </label>
         <input type="text" name="docu[title]" id="title" value="<%=items.title%>" class="form-control">
+        <div class="invalid-feedback">Title is required</div>
         </div>
         <div>
         <label for="des" class="form-label">Description : </label>
@@ -16,16 +17,19 @@
         </div>
         <div>
         <label for='location' class="form-label">Location : </label>
-        <input type="text" id="location" name="docu[location]" value="<%=items.location%>"  class="form-control">
+        <input type="text" id="location" name="docu[location]" value="<%=items.location%>"  class="form-control" >
+               <div class="invalid-feedback">Location is Required</div>
         </div>
         <div class="edit-flex">
         <div>
         <label for="cntry" class="form-label">Country : </label>
-        <input type="text" id="cntry" name="docu[country]" value="<%=items.country%>"  class="form-control">
+        <input type="text" id="cntry" name="docu[country]" value="<%=items.country%>"  class="form-control" required>
+        <div class="invalid-feedback">Valid country name is required</div>
         </div>
         <div>
         <label for="price" class="form-label">Price : </label>
-        <input type="number" id="price" name="docu[price]" value="<%=items.price%>"  class="form-control">
+        <input type="number" id="price" name="docu[price]" value="<%=items.price%>"  class="form-control" required>
+        <div class="invalid-feedback">Valid price is required</div>
         </div>
         </div>
         <br>

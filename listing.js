@@ -2,6 +2,7 @@ const mongoose=require('mongoose');
 const schema=new mongoose.Schema({
   title:{
     type:String,
+    required:true
   },
   description:{
     type:String
@@ -13,18 +14,21 @@ const schema=new mongoose.Schema({
     },
     url:{
     type:String,
-    default:'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.hellosingaporetours.com%2Fblog%2Fplaces-to-visit-in-singapore-top-10-tourist-attractions&psig=AOvVaw1BDt_K22m5L89v05wNZE1k&ust=1758715368586000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKCK_ILr7o8DFQAAAAAdAAAAABAE',
-   set:(v)=>v===''?'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.hellosingaporetours.com%2Fblog%2Fplaces-to-visit-in-singapore-top-10-tourist-attractions&psig=AOvVaw1BDt_K22m5L89v05wNZE1k&ust=1758715368586000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKCK_ILr7o8DFQAAAAAdAAAAABAE':v
+    default:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&ixlib=rb-4.0.3',
+   set:(v)=>v===''?'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop&ixlib=rb-4.0.3':v
     }
   },
   price:{
-    type:Number
+    type:Number,
+    required:true
   },
   location:{
-    type:String
+    type:String,
+    required:true
 },
   country:{
     type:String,
+    required:true
   }
 });
 const listing=mongoose.model('listing',schema);
