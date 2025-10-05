@@ -1,0 +1,12 @@
+<%layout('layouts/template.ejs')%>
+<form method="post" action="/listing/<%=id%>/ratings" novalidate class='needs-validation rating-form'>
+
+    <label class="form-label">Rating : </label>
+<input type="range" min="1" max="5" value="3" class="form-range"name=rating[range]>
+<br>
+<label for="comment" class="form-label">Comment : </label>
+<textarea col="21" row="16" placeholder="Write Your Comment" class="form-control" required name="rating[comment]"></textarea>
+<div class="invalid-feedback">Please leave a comment</div>
+<br>
+<button type="submit" class="new-submit">Submit</button>
+</form>

@@ -1,3 +1,4 @@
+const { required } = require('joi');
 const mongoose=require('mongoose');
 const schema=new mongoose.Schema({
   title:{
@@ -29,7 +30,34 @@ const schema=new mongoose.Schema({
   country:{
     type:String,
     required:true
-  }
+  },
+  ratings:[{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'review'
+  }]
 });
+schema.post('findOneAndDelete',async function(doc){
+  if (!doc || doc.ratings.length===0){
+    console.log('empty rating array');
+  }else{
+   await review.deleteMany({_id:{$in:doc.ratings}})
+  }
+
+
+})
 const listing=mongoose.model('listing',schema);
-module.exports=listing;
+const reviewSchema=new mongoose.Schema({
+  range:{
+    type:Number,
+    min:1,
+    max:5,
+    required:true
+  },
+  comment:{
+    type:String,
+    required:true,
+    maxlength:500
+  }
+})
+const review=mongoose.model('review',reviewSchema,);
+module.exports={listing,review};

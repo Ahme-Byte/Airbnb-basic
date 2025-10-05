@@ -18,3 +18,22 @@
         <button class="show-del">Delete</button>
     </form>
     </div>
+    <br>
+    <hr>
+    <form method="get" action="/listing/<%=items._id%>/ratings" class="show-form">
+      <button class="edit-btn-review">Give Rating</button>
+  </form>
+<br>
+<hr>
+<div class="review-box">
+  <%for(let review of items.ratings){%>
+        <div class="card" style="width: 10rem;">
+               <h4><b>Jolly mk</b></h4>
+               <p><%=review.comment%></p>
+               <p>Star : <%=review.range%></p>
+               <form method="post" action="/listing/<%=items._id%>/review/<%=review._id%>?_method=DELETE">
+                <button class="btn btn-outline-danger">Delete</button>
+               </form>
+        </div>   
+ <%}%>
+</div>

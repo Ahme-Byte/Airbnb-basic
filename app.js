@@ -6,7 +6,7 @@ const path=require('path');
 const methodOverride=require('method-override');
 const NewError=require('./error.js');
 const cors=require('cors');
-const {userSchema}=require('./joi.js');
+const {userSchema,userReview}=require('./joi.js');
 app.engine('ejs',engine);
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
@@ -14,9 +14,10 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
+
 //Mongoose Setup
 const url='mongodb://127.0.0.1:27017/wanderlast';
-const listing=require('./listing');
+const {listing,review}=require('./listing');
 //Checking Id 
 const isValid=(id)=>mongoose.Types.ObjectId.isValid(id);
 main()
@@ -58,17 +59,52 @@ app.post('/listing',async (req,res)=>{
     res.redirect('/listing');
 })
 
+//Route Reviews get form
+app.get('/listing/:id/ratings',(req,res)=>{
+    let {id}=req.params;
+    res.render('rating.ejs',{id});
+})
+
+//Route Reviews post form
+app.post('/listing/:id/ratings',async (req,res)=>{
+    let {id}=req.params;
+    if(!isValid(id)){
+        throw new NewError(400,'Not Found');
+    }
+    let {error,value}=userReview.validate(req.body);
+    if(error){
+        throw new NewError(400,error);
+    }
+    let review1=new review(value.rating);
+   let list= await listing.findById(id);
+   if(!list){
+    throw new NewError(404,'Invalid Id')
+   }
+     await review1.save();
+   list.ratings.push(review1);
+   await list.save();
+   res.redirect(`/listing/${id}`);
+})
+
 //Route edit
 app.get('/listing/edit/:id',async (req,res)=>{
       const{id}=req.params;
       if(!isValid(id)){
         throw new NewError(400,'Not Found');
       }
-     const items =await listing.findById(id);
+     const items=await listing.findById(id);
      if(!items){
          throw new NewError(404,'Invalid Id');
      }
       res.render('edit',{items});
+})
+
+//Route review delete
+app.delete('/listing/:l_id/review/:r_id',async (req,res)=>{
+    let {l_id,r_id}=req.params;
+    await review.findByIdAndDelete(r_id);
+    await listing.findByIdAndUpdate(l_id,{$pull:{ratings:r_id}})
+    res.redirect(`/listing/${l_id}`);
 })
 
 //Route Update
@@ -98,7 +134,7 @@ app.get('/listing/:id',async(req,res)=>{
     if(!isValid(id)){
       throw new NewError(400,'Not Found');
     }
-     const items=await listing.findById(id);
+     const items=await listing.findById(id).populate('ratings');
      if(!items){
         throw new NewError(404,'Invalid Id');
      }
@@ -115,11 +151,6 @@ app.use((err,req,res,next)=>{
     const{status=500,message='Something went wrong'}=err;
     res.status(status).render('error.ejs',{message});
 })
-
-
-
-
-
 
 
 //App is Listenig

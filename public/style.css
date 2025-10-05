@@ -160,6 +160,45 @@ text-decoration: none;
     width:75%;
     margin-top:7rem;
 }
+.edit-btn-review{
+   background-color:rgba(231, 114, 114, 0.82);
+   cursor:pointer;
+   border:1px solid rgba(231, 114, 114, 0.82);
+   border-radius:5px;
+   width:70px;
+  
+   position:relative;
+}
+.edit-btn-review:after{
+    content:'';
+    position:absolute;
+    top:-8%;
+    right:-10px;
+    transform:translateY(50%);
+    border-left:10px solid rgba(231, 114, 114, 0.82);
+    border-top:15px solid transparent;
+    border-bottom:15px solid transparent;
+}
+.show-form{
+    margin-bottom:2rem;
+    margin-left:2rem;
+}
+.rating-form{
+    margin-top:4rem;
+    width:70%;
+    margin-left:auto;
+    margin-right:auto;
+}
+.review-box{
+    width:80%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1rem;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:1.5rem;
+    
+}
 
 @media (min-width:768px){
     .index{
