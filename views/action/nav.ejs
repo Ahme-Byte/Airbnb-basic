@@ -18,4 +18,18 @@
       </ul>
     </div>
   </div>
+  <div class="nav-authenticate">
+  <%  if(!currUser){%>
+      <div class="nav-authenticate1">
+    <a href="/user/signup">Sign up</a>
+    <a href="/user/login">Log in</a>
+     </div>
+   <% }%>
+ <%if(currUser){%>
+    <div>
+    <a href="/user/logout">Log out</a>
+    </div>
+<% }%>
+  </div>
+  
 </nav>

@@ -1,9 +1,9 @@
 const joi=require('joi');
-module.exports.userSchema=joi.object({
+module.exports.listingSchema=joi.object({
     docu:joi.object({
         title:joi.string().required(),
         description:joi.string().allow(null,""),
-        image:joi.string().allow("",null),
+        image:joi.string().required(),
         location:joi.string().required(),
         country:joi.string().required().pattern(/^[A-Za-z\s]+$/).min(2),
         price:joi.number().required().min(0)
@@ -14,4 +14,9 @@ module.exports.userReview=joi.object({
         range:joi.number().default(3).min(1).max(5),
         comment:joi.string().required().pattern(/^[a-zA-Z\d\s\.+-@#!&()*]+$/).min(2)
     })
+})
+module.exports.userSchema=joi.object({
+    username:joi.string(),
+    email:joi.string().email().required(),
+    password:joi.string().required()
 })

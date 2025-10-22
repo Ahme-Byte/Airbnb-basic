@@ -1,7 +1,7 @@
 <%layout('layouts/template.ejs')%>
     <h2 class='listing-heading'>New Listing</h2>
     <div class="form-wrapper">
-    <form method="post" class="needs-validation" action="/listing" novalidate> 
+    <form method="post" class="needs-validation" action="/listing" novalidate enctype="multipart/form-data"> 
         <div class="mb-3">  
         <label for="title" class='form-label'>Title : </label>
         <input type="text" name="docu[title]" id="title" placeholder="Enter Title"  class='form-control' required>
@@ -12,8 +12,9 @@
         <textarea id="des" name="docu[description]" placeholder="Write Description"  class='form-control'></textarea>
        </div>
        <div class="mb-3">
-        <label for='img' class='form-label'>Image : </label>
-        <input type="text" id="img" name="docu[image]" placeholder="Enter image link/url"  class='form-control'>
+        <label for='img' class='form-label'>Upload Image : </label>
+        <input type="file" id="img" name="docu[image]" class="form-control" required>
+        <div class="invalid-feedback">Please Upload an Image</div>
         </div>
         <div class="mb-3">
         <label for='location' class='form-label'>Location : </label>
@@ -23,7 +24,7 @@
         <div class="d-md-flex justify-content-evenly">
        <div class="mb-3">
         <label for="cntry" class='form-label'>Country : </label>
-        <input type="text" id="cntry" name="docu[country]" placeholder="Enter Country"  class='form-control' required>
+        <input type="text" id="cntry" name="docu[country]" placeholder="Enter Country"  class='form-control' required pattern="^[A-Za-z\s]{2,}$">
            <div class="invalid-feedback">Please enter a valid country name</div>
        </div>
        <div class="mb-3">

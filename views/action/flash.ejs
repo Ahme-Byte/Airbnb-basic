@@ -1,0 +1,15 @@
+<!--For Erro Alert-->
+<% if(sucMsg && sucMsg.length){ %>
+    <div class="alert alert-success col-6 offset-3 alert alert-warning alert-dismissible fade show  alert" role="alert">
+<%=sucMsg%>
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<%}%>
+
+<!--For Erro Alert-->
+<%if(errMsg && errMsg.length){%>
+    <div class="alert alert-danger col-6 offset-3 alert alert-warning alert-dismissible fade show  alert" role="alert">
+<%=errMsg%>
+<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<%}%>

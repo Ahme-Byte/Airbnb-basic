@@ -1,6 +1,6 @@
 <%layout('layouts/template.ejs')%>
     <h1 class='edit-heading'>Edit Listing</h1>
-    <form method="post" action="/listing/<%=items._id%>?_method=PATCH" class="needs-validation" novalidate>
+    <form method="post" action="/listing/<%=items._id%>?_method=PATCH" class="needs-validation" novalidate enctype="multipart/form-data">
         <div class='edit-section'>
         <div>
          <label for="title" class="form-label">Title : </label>
@@ -11,9 +11,15 @@
         <label for="des" class="form-label">Description : </label>
         <textarea id="des" name="docu[description]"  class="form-control"><%=items.description%></textarea>
         </div>
+        <br>
         <div>
-        <label for='img' class="form-label">Image : </label>
-        <input type="text" id="img" name="docu[image]" value="<%=items.image%>"  class="form-control">
+          <p>Existing Image :</p>  
+            <img src="<%=imageUrl%>">
+        </div>
+        <br>
+        <div>
+        <label for='img' class="form-label">Upload New Image : </label>
+        <input type="file" id="img" name="docu[image]" value="<%=items.image%>"  class="form-control">
         </div>
         <div>
         <label for='location' class="form-label">Location : </label>

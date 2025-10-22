@@ -2,38 +2,59 @@
 <div class="card show-card">
   <img src="<%=items.image.url%>" class="card-img-top" alt="listing-img">
   <div class="card-body">
+    <p><i>Owned by : <%=items.owner[0].username%></i></p>
     <h5 class="card-title"><%=items.title%></h5>
     <p class="card-text">    <ul>
+      <% if(items.description){ %>
         <li><%=items.description%></li>
+    <% } %>
          <li><%=items.location%></li>
           <li><%=items.country%></li>
            <li>&#8360; <%=items.price.toLocaleString('en-IN')%></li>
     </ul>  </p>
   </div>
 </div>
+<% if(currUser && currUser._id.equals(items.owner[0]._id)){%>
 <div class="show-btn">
-   <button type='submit' class="show-edit"><a href="/listing/edit/<%=items._id%>">Edit</a></button>
+   <button  class="show-edit"><a href="/listing/edit/<%=items._id%>">Edit</a></button>
     <br>
     <form method="post" action="/listing/<%=items._id%>?_method=DELETE">
         <button class="show-del">Delete</button>
     </form>
     </div>
+<%}%>
     <br>
     <hr>
-    <form method="get" action="/listing/<%=items._id%>/ratings" class="show-form">
+    <form method="get" action="/listing/<%=items._id%>/review" class="show-form">
       <button class="edit-btn-review">Give Rating</button>
   </form>
 <br>
 <hr>
+<% if(items.ratings.length != 0){%>
+<h3>All Reviews</h3>
+<%}%>
 <div class="review-box">
   <%for(let review of items.ratings){%>
         <div class="card" style="width: 10rem;">
-               <h4><b>Jolly mk</b></h4>
+               <h4><b><%=review.auther.username%></b></h4>
+                <p class="starability-result" data-rating=<%=review.range%>>
+  </p>
                <p><%=review.comment%></p>
-               <p>Star : <%=review.range%></p>
+               <% if(currUser && currUser._id.equals(review.auther._id)){%>
                <form method="post" action="/listing/<%=items._id%>/review/<%=review._id%>?_method=DELETE">
                 <button class="btn btn-outline-danger">Delete</button>
                </form>
+             <% }%>
         </div>   
  <%}%>
 </div>
+<br>
+<h3 style="margin-left:3rem;margin-top:3rem">Where You'll be</h3>
+<div id="map" style="width: 85%; border-radius: 10px;"></div>
+<script>
+const listingCoordinates={
+      lon:<%=items.geoCoding.coordinates[0]%>,
+      lat:<%=items.geoCoding.coordinates[1]%>,
+      title:'<%=items.title%>'
+}</script>
+<script src="/map.js"></script>

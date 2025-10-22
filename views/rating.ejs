@@ -1,8 +1,18 @@
 <%layout('layouts/template.ejs')%>
-<form method="post" action="/listing/<%=id%>/ratings" novalidate class='needs-validation rating-form'>
-
-    <label class="form-label">Rating : </label>
-<input type="range" min="1" max="5" value="3" class="form-range"name=rating[range]>
+<form method="post" action="/listing/<%=id%>/review" novalidate class='needs-validation rating-form'>
+<fieldset class="starability-grow">
+  <legend>Rating:</legend>
+  <input type="radio" id="first-rate1" name=rating[range] value="1" />
+  <label for="first-rate1" title="Terrible">1 star</label>
+  <input type="radio" id="first-rate2" name=rating[range] value="2" />
+  <label for="first-rate2" title="Not good">2 stars</label>
+  <input type="radio" id="first-rate3" name=rating[range] value="3" />
+  <label for="first-rate3" title="Average">3 stars</label>
+  <input type="radio" id="first-rate4" name=rating[range] value="4" />
+  <label for="first-rate4" title="Very good">4 stars</label>
+  <input type="radio" id="first-rate5" name=rating[range] value="5" />
+  <label for="first-rate5" title="Amazing">5 stars</label>
+</fieldset>
 <br>
 <label for="comment" class="form-label">Comment : </label>
 <textarea col="21" row="16" placeholder="Write Your Comment" class="form-control" required name="rating[comment]"></textarea>

@@ -1,0 +1,17 @@
+<%layout('layouts/template.ejs')%>
+<h2 class="col-6 offset-3 authentic-page">Log In</h2>
+<form method="post" action="/user/login" class="needs-validation col-6 offset-3" novalidate>
+      <div>
+         <label for="username" class="form-label">User Name : </label>
+        <input type="text" name="username" id="username" class="form-control">
+       </div>
+          <div>
+         <label for="password" class="form-label">Password : </label>
+        <input type="password" name="password" id="password" class="form-control" required>
+        <div class="invalid-feedback">Password is required</div>
+        </div>
+        <a href="/user/signup" class="signup-link">Don't have an Account?</a>
+        <br>
+        <br>
+       <button class="btn btn-success">Log In</button>
+</form>
