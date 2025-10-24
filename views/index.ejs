@@ -1,6 +1,103 @@
 <%layout('layouts/template.ejs')%>
-    <h1 class="listing-heading">Listing page</h1>
-<br>
+ <!--<h1 class="listing-heading">Listing page</h1>-->  
+
+ <div id="filters">
+
+<div class="filter">
+  <a href="/listing?category=trending">
+<div><i class="fa-solid fa-fire"></i></div>
+<p>Trending</p>
+</a>
+</div>
+
+<div class="filter">
+  <a href="/listing?category=rooms&destination=<%=destination%>">
+<div><i class="fa-solid fa-bed"></i></div>
+<p>Rooms</p>
+</a>
+</div>
+
+<div class="filter">
+   <a href="/listing?category=iconic_city&destination=<%=destination%>">
+<div><i class="fa-solid fa-mountain-city"></i></div>
+<p>Iconic Cities</p>
+</a>
+</div>
+
+<div class="filter">
+  <a href="/listing?category=mountainous&destination=<%=destination%>">
+<div><i class="fa-solid fa-mountain"></i></div>
+<p>Mountains</p>
+</a>
+</div>
+
+<div class="filter">
+  <a href="/listing?category=castle&destination=<%=destination%>">
+<div><i class="fa-solid fa-chess-rook"></i></div>
+<p>Castles</p>
+</a>
+</div>
+
+<div class="filter">
+  <a href="/listing?category=pool&destination=<%=destination%>">
+<div><i class="fa-solid fa-person-swimming"></i></div>
+<p>Amazing Polls</p>
+</a>
+</div>
+
+<div class="filter">
+  <a href="/listing?category=camping&destination=<%=destination%>">
+<div><i class="fa-solid fa-tent"></i></div>
+<p>Camping</p>
+</a>
+</div>
+
+<div class="filter">
+    <a href="/listing?category=farm&destination=<%=destination%>">
+<div><i class="fa-solid fa-cow"></i></div>
+<p>Farms</p>
+</a>
+</div>
+
+<div class="filter">
+    <a href="/listing?category=arctic&destination=<%=destination%>">
+<div><i class="fa-solid fa-snowflake"></i></div>
+<p>Arctic</p>
+</a>
+</div>
+
+<div class="filter">
+    <a href="/listing?category=domes&destination=<%=destination%>">
+<div><i class="fa-solid fa-igloo"></i></div>
+<p>Domes</p>
+</a>
+</div>
+
+<div class="filter">
+    <a href="/listing?category=boats&destination=<%=destination%>">
+<div><i class="fa-solid fa-ship"></i></div>
+<p>Boats</p>
+</a>
+</div>
+
+<div class="form-check-reverse form-switch ms-auto switch-border ">
+  <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" >
+   <label class="form-check-label" for="switchCheckChecked">Display total after taxes</label>
+  
+</div>
+
+ </div> 
+ <br>
+
+ <% if(items.length===0){%>
+  <p class="no_listing"><i class="fa-solid fa-triangle-exclamation"></i><b>No Listings Found For 
+   <%if(category){%>
+    <%=category%>
+   <%}else{%>
+     <%=destination%>
+   <%}%></b></p>
+ <%}else{%>
+
 <div class="index">
   <% for(let item of items){%>
      <a href="/listing/<%=item._id%>">
@@ -9,11 +106,22 @@
    <div class="card-img-overlay"></div>
   <div class="card-body">
     <h5 class="card-title"><b><%=item.title%></b></h5>
-    <p class="card-text">&#8360;<%=item.price.toLocaleString('en-IN')%></p>
+    <p class="card-text">&#8360;<%=item.price.toLocaleString('en-IN')%> / night
+      <i class="tax">&nbsp;&nbsp;+18% GST</i>
+    </p>
   </div>
 </div>
  </a>
  <%}%>
  </div>
+ <%}%>
 
-  
+  <script>
+    const taxSwitch=document.getElementById('switchCheckChecked');
+    const tax=document.getElementsByClassName('tax');
+   taxSwitch.addEventListener('click',()=>{
+  for(let el of tax ){
+      el.classList.toggle('visible');
+  }
+   })
+  </script>

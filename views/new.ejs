@@ -16,6 +16,23 @@
         <input type="file" id="img" name="docu[image]" class="form-control" required>
         <div class="invalid-feedback">Please Upload an Image</div>
         </div>
+         <div class="mb-3">
+       <select  class="form-select form-control" name="docu[category]" required>
+        <option selected disabled>Select Category</option>
+        <option value="rooms">Rooms</option>
+        <option value="iconic_city">Iconic City</option>
+        <option value="mountainous">Mountainous</option>
+        <option value="castle">Castle</option>
+        <option value="pool">Pool</option>
+        <option value="camping">Camping</option>
+        <option value="farm">Farm</option>
+        <option value="arctic">Arctic</option>
+        <option value="domes">Dome</option>
+        <option value="boats">Boat</option>
+       </select>
+        <div class="invalid-feedback">Please Choose a Category</div>
+        </div>
+
         <div class="mb-3">
         <label for='location' class='form-label'>Location : </label>
         <input type="text" id="location" name="docu[location]" placeholder="Enter Location"  class='form-control' required>

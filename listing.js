@@ -33,6 +33,10 @@ geoCoding: {
       required: true
     }
   },
+  category:{
+  type:String,
+  enum:['rooms','iconic_city','mountainous','castle','pool','camping','farm','arctic','domes','boats']
+  },
   country:{
     type:String,
     required:true

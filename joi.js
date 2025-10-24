@@ -4,6 +4,7 @@ module.exports.listingSchema=joi.object({
         title:joi.string().required(),
         description:joi.string().allow(null,""),
         image:joi.string().required(),
+        category:joi.string().required(),
         location:joi.string().required(),
         country:joi.string().required().pattern(/^[A-Za-z\s]+$/).min(2),
         price:joi.number().required().min(0)

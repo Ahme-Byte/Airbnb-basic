@@ -8,8 +8,27 @@ const isValid=(id)=>mongoose.Types.ObjectId.isValid(id);
 
 //Home
 module.exports.home=async (req,res)=>{
-          const items=await listing.find();
-    res.render('index',{items});
+  const {category,destination}=req.query;
+  let filter={};
+  if(destination){
+   filter.$or=[
+    {location:{$regex:destination,$options:'i'}},
+    {country:{$regex:destination,$options:'i'}},
+    {title:{$regex:destination,$options:'i'}}
+   ];
+  }
+  if (category==='trending'){
+   const items= await listing.aggregate([{$addFields:{countReview:{$size:'$ratings'}}},
+      {$sort:{countReview:-1}},
+      {$limit:20}
+    ]);
+    return res.render('index',{items});
+  }
+  if(category){
+    filter.category=category;
+  }
+          const items=await listing.find(filter);
+    res.render('index',{items,category,destination});
 };
 
 //New
