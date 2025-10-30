@@ -1,9 +1,9 @@
 [build]
-  command = ""
+  command = "npm install --legacy-peer-deps"
   publish = "public"
   functions = "functions"
 
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/server/:splat"
+  from = "/*"
+  to = "/.netlify/functions/server"
   status = 200
