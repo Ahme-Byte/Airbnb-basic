@@ -101,6 +101,7 @@ app.use((err,req,res,next)=>{
     const{status=500,message='Something went wrong'}=err;
     res.status(status).render('error.ejs',{message});
 })
+module.exports=app;
 
 /*App is Listenig
 app.listen(8080,()=>{
