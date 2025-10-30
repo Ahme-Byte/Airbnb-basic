@@ -84,6 +84,9 @@ app.use((req,res,next)=>{
     next();
 })
 //Routes
+app.get('/',(req,res)=>{
+    res.render('index');
+})
 app.use('/listing',listingRoute);
 app.use('/listing/:id/review',reviewRoute);
 app.use('/user',userRoute);
