@@ -57,6 +57,15 @@ app.use(session(sessionSetup));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+
+// ✅ Make sure currUser always exists, even if no user is logged in
+app.use((req, res, next) => {
+  res.locals.sucMsg = req.flash('success');
+  res.locals.errMsg = req.flash('error');
+  res.locals.currUser = req.user || null; // <-- THIS LINE FIXES THE ERROR
+  next();
+});
+
 passport.use(new localStratigy(user.authenticate()));
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
@@ -103,7 +112,7 @@ app.use((err,req,res,next)=>{
 })
 module.exports=app;
 
-/*App is Listenig
-app.listen(8080,()=>{
-    console.log('Port is listening on 8080');
-})*/
+//App is Listenig
+//app.listen(8080,()=>{
+ //   console.log('Port is listening on 8080');
+//})
