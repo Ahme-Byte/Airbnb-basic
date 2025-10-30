@@ -1,5 +1,23 @@
-  // Initialize map (center Pakistan)
+// Initialize map (center Pakistan)
  document.addEventListener('DOMContentLoaded',()=>{
+      const show_btn=document.querySelector('.more_reviews');
+      const card=document.querySelectorAll('.show_Class');
+      if (show_btn){
+      show_btn.addEventListener('click',()=>{
+        let isHide=[...card].some(el=>el.classList.contains('hide_elements'));
+       if (isHide){
+        card.forEach(el=>{
+         el.classList.remove('hide_elements');
+       })
+       show_btn.textContent='Hide Reviews >';
+      }else{
+        card.forEach(el=>{
+       el.classList.add('hide_elements');
+       show_btn.textContent='Show more Reviews >'
+        })
+      }
+      })
+    }
     const map = L.map('map').setView([listingCoordinates.lat, listingCoordinates.lon], 6);
 
   // Add OpenStreetMap tiles

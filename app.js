@@ -9,7 +9,8 @@ const NewError=require('./error.js');
 const cors=require('cors');
 const listingRoute=require('./routes/listing.js');
 const reviewRoute=require('./routes/review.js');
-const userRoute=require('./routes/user.js')
+const userRoute=require('./routes/user.js');
+const MongoStore = require('connect-mongo');
 const session=require('express-session');
 const flash=require('connect-flash');
 const passport=require('passport');
@@ -20,14 +21,29 @@ app.engine('ejs',engine);
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 
+const url='mongodb://127.0.0.1:27017/wanderlast';
+//const url='mongodb+srv://ahmipersonal05_db_user:fireFree%4001wanderlust@cluster0.qpst8rv.mongodb.net/wanderlast?retryWrites=true&w=majority'
+
 //packages Middlewires
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
 app.use(cookieParser('secretcode'));
+require('dotenv').config();
+
+//Connect-mongo Session Stroge
+const store=MongoStore.create({
+  mongoUrl:url,
+  crypto:{
+    secret:process.env.SECRET
+  },
+  touchAfter:24*3600
+})
+
 const sessionSetup={
-    secret:'mysecretcodehere',
+    store,
+    secret:process.env.SECRET,
     resave:false,
     saveUninitialized:true,
     cookie:{
@@ -46,7 +62,6 @@ passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
 
 //Mongoose Setup
-const url='mongodb://127.0.0.1:27017/wanderlast';
 main()
 .then((r)=>{
     console.log('Connection Successfull');

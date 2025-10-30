@@ -4,7 +4,7 @@
  <div id="filters">
 
 <div class="filter">
-  <a href="/listing?category=trending">
+  <a href="/listing?category=trending&destination=<%=destination%>">
 <div><i class="fa-solid fa-fire"></i></div>
 <p>Trending</p>
 </a>
@@ -88,15 +88,15 @@
 
  </div> 
  <br>
-
- <% if(items.length===0){%>
-  <p class="no_listing"><i class="fa-solid fa-triangle-exclamation"></i><b>No Listings Found For 
+ <% if (items.length===0){ %>
+  <p class="no_listing"><i class="fa-solid fa-triangle-exclamation"></i><b>No Listings Found 
    <%if(category){%>
-    <%=category%>
-   <%}else{%>
-     <%=destination%>
+    For <%=category%>
+   <%}if(destination){%>
+     Of <%=destination%>
    <%}%></b></p>
  <%}else{%>
+ 
 
 <div class="index">
   <% for(let item of items){%>

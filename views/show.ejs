@@ -26,30 +26,35 @@
     <br>
     <hr>
     <form method="get" action="/listing/<%=items._id%>/review" class="show-form">
-      <button class="edit-btn-review">Give Rating</button>
+      <button title='Share Your Experience' class="edit-btn-review"><b>Leave a Review &star;</b></button>
   </form>
 <br>
-<hr>
 <% if(items.ratings.length != 0){%>
-<h3>All Reviews</h3>
+<h3 class="all_reviews">All Reviews <%=items.ratings.length%></h3>
 <%}%>
 <div class="review-box">
-  <%for(let review of items.ratings){%>
-        <div class="card" style="width: 10rem;">
-               <h4><b><%=review.auther.username%></b></h4>
-                <p class="starability-result" data-rating=<%=review.range%>>
+  <% for(let i=0; i<items.ratings.length;i++){
+     let review=items.ratings[i]; 
+    let hideClass=i >=6 ? 'hide_elements' : ''; %>
+    <% let showClass=i >=6 ? 'show_Class' : ''; %>
+        <div class="card review_card <%=hideClass%> <%=showClass%>" style="width: 14rem;">
+               <h4><i><%=review.auther.username%></i></h4>
+                <p class="starability-result review_star" data-rating=<%=review.range%>>
   </p>
                <p><%=review.comment%></p>
                <% if(currUser && currUser._id.equals(review.auther._id)){%>
                <form method="post" action="/listing/<%=items._id%>/review/<%=review._id%>?_method=DELETE">
-                <button class="btn btn-outline-danger">Delete</button>
+                <button class="review_delete_btn">Delete</button>
                </form>
              <% }%>
         </div>   
  <%}%>
 </div>
+ <% if(items.ratings.length>6){ %>
+   <button type="button" class="more_reviews">Show more Reviews ></button>
+ <% } %>
 <br>
-<h3 style="margin-left:3rem;margin-top:3rem">Where You'll be</h3>
+<h3 style="margin-left:3rem;margin-top:8rem"><i>Where You'll be</i></h3>
 <div id="map" style="width: 85%; border-radius: 10px;"></div>
 <script>
 const listingCoordinates={

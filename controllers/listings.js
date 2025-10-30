@@ -22,7 +22,7 @@ module.exports.home=async (req,res)=>{
       {$sort:{countReview:-1}},
       {$limit:20}
     ]);
-    return res.render('index',{items});
+    return res.render('index',{items,destination,category});
   }
   if(category){
     filter.category=category;
