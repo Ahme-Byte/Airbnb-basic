@@ -3,6 +3,9 @@
   publish = "public"
   functions = "functions"
 
+[functions]
+  included_files = ["views/**", "public/**"]
+
 [[redirects]]
   from = "/*"
   to = "/.netlify/functions/server"
