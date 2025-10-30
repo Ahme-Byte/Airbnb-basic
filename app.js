@@ -99,7 +99,7 @@ app.use((err,req,res,next)=>{
     res.status(status).render('error.ejs',{message});
 })
 
-//App is Listenig
+/*App is Listenig
 app.listen(8080,()=>{
     console.log('Port is listening on 8080');
-})
+})*/
