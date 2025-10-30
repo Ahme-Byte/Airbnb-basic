@@ -58,14 +58,6 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// ✅ Make sure currUser always exists, even if no user is logged in
-app.use((req, res, next) => {
-  res.locals.sucMsg = req.flash('success');
-  res.locals.errMsg = req.flash('error');
-  res.locals.currUser = req.user || null; // <-- THIS LINE FIXES THE ERROR
-  next();
-});
-
 passport.use(new localStratigy(user.authenticate()));
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
@@ -89,7 +81,7 @@ app.use(cors());
 app.use((req,res,next)=>{
     res.locals.sucMsg=req.flash('success');
    res.locals.errMsg=req.flash('error');
-   res.locals.currUser=req.user;
+   res.locals.currUser=req.user || null;
     next();
 })
 //Routes
@@ -110,9 +102,8 @@ app.use((err,req,res,next)=>{
     const{status=500,message='Something went wrong'}=err;
     res.status(status).render('error.ejs',{message});
 })
-module.exports=app;
 
 //App is Listenig
-//app.listen(8080,()=>{
- //   console.log('Port is listening on 8080');
-//})
+app.listen(8080,()=>{
+   console.log('Port is listening on 8080');
+})
