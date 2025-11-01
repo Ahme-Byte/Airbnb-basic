@@ -17,7 +17,7 @@
     <a href="/user/login"><b>Log in</b></a>
      </div>
    <% }else{%>
-    <div>
+    <div class="logout">
     <a href="/user/logout"><b>Log out</b></a>
     </div>
 <% }%>
@@ -39,6 +39,7 @@
          <a class="nav-link" href="/listing/new">Airbnb Your home</a>
         </li>
       </ul>
+     <!--User authentication-->
   <div class="nav-authenticate">
   <%  if(!currUser){%>
       <div class="nav-authenticate1">
@@ -46,9 +47,10 @@
     <a href="/user/login"><b>Log in</b></a>
      </div>
    <% }else{%>
-    <div>
+    <div class="logout">
     <a href="/user/logout"><b>Log out</b></a>
     </div>
 <% }%>
+  </div>
   </div>
 </nav>

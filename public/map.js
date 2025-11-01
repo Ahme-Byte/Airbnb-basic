@@ -18,7 +18,7 @@
       }
       })
     }
-    const map = L.map('map').setView([listingCoordinates.lat, listingCoordinates.lon], 6);
+    const map = L.map('map').setView([listingCoordinates.lat, listingCoordinates.lon], 13);
 
   // Add OpenStreetMap tiles
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

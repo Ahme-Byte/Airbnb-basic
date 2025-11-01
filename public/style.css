@@ -27,6 +27,7 @@ main{
     flex-direction: column;
     align-items:center;
     justify-content: space-evenly;
+    margin-top:4rem;
 }
 .f-socials-link i{
       font-size: 1.2rem;
@@ -434,6 +435,13 @@ header{
   border-radius:1rem;
   padding:0.5rem;
 }
+.form-wrapper{
+    width:90%;
+}
+.form-control:focus{
+       box-shadow: 0 0 0 0.25rem rgb(227, 160, 160) !important;
+   border: none !important;
+}
 
 /*Responsiveness for tablets*/
 @media (min-width:768px){
@@ -583,7 +591,16 @@ grid-template-columns: 1fr 1fr 1fr;
   .form-check-reverse {       
   margin-left: auto;           
 }
-
+.logout{
+    margin-left: auto;
+}
+.logout{
+    display: flex;
+    justify-content: flex-end;
+}
+.form-wrapper{
+    width:60%;
+}
 
 }
 

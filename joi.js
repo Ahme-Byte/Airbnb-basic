@@ -13,7 +13,7 @@ module.exports.listingSchema=joi.object({
 module.exports.userReview=joi.object({
     rating:joi.object({
         range:joi.number().default(3).min(1).max(5),
-        comment:joi.string().required().pattern(/^[a-zA-Z\d\s\.+-@#!&()*]+$/).min(2)
+        comment:joi.string().required().pattern(/^[a-zA-Z\d\s\.+-@#!&()*'":]+$/).min(2)
     })
 })
 module.exports.userSchema=joi.object({
