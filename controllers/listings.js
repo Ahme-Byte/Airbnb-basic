@@ -8,7 +8,7 @@ const isValid=(id)=>mongoose.Types.ObjectId.isValid(id);
 
 //Home
 module.exports.home=async (req,res)=>{
-  const {category,destination}=req.query;
+  const {category='',destination=''}=req.query;
   let filter={};
   if(destination){
    filter.$or=[
