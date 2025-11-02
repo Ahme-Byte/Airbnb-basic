@@ -100,7 +100,7 @@
   <% for(let item of items){%>
      <a href="/listing/<%=item._id%>">
 <div class="card" style="width: 18rem;">
-  <img src="<%=item.image.url%>" class="card-img-top" alt="listing-img">
+  <img src="<%=item.image[0].url%>" class="card-img-top" alt="listing-img">
    <div class="card-img-overlay"></div>
   <div class="card-body">
     <h5 class="card-title"><b><%=item.title%></b></h5>

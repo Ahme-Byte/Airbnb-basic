@@ -7,7 +7,7 @@ const {storage}=require('../cloudConfig.js');
 const upload=multer({storage});
 
 //Route listing
-router.route('/').get(controlListing.home).post(checkJoi,upload.single('docu[image]'),controlListing.post);
+router.route('/').get(controlListing.home).post(checkJoi,upload.array('docu[image]',5),controlListing.post);
 
 //Route New Listing
 router.get('/new',userAuthenticated,controlListing.new);

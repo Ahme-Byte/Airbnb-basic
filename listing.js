@@ -10,10 +10,10 @@ const schema=new mongoose.Schema({
   description:{
     type:String
   },
-  image:{
+  image:[{
   url:String,
   filename:String
-  },
+  }],
   price:{
     type:Number,
     required:true

@@ -30,6 +30,8 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
 app.use(cookieParser('secretcode'));
+//For all Method
+app.use(cors());
 require('dotenv').config();
 
 //Connect-mongo Session Stroge
@@ -74,8 +76,7 @@ async function main(){
 await mongoose.connect(url);
 }
 
-//For all Method
-app.use(cors());
+
 
 //Middlewire
 app.use((req,res,next)=>{

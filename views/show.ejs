@@ -1,6 +1,16 @@
 <%layout('layouts/template.ejs')%>
 <div class="card show-card">
-  <img src="<%=items.image.url%>" class="card-img-top" alt="listing-img">
+  <div class="imgs"> 
+     <img src="<%=items.image[0].url%>" class="card-img-top show-image <%=items.image.length===1?'single-image':''%> " alt="listing-img">
+     <div class="rest-imgs">
+      <% for(let i=1;i<items.image.length;i++){ %>
+       <img src="<%=items.image[i].url%>" class="rest-img" alt="listing-img">
+      <% } %>           
+     </div>
+    </div>
+    <% if (items.image.length > 1){ %>
+   <i class="fa-solid fa-forward forward"></i> 
+   <% } %>
   <div class="card-body">
     <p><i>Owned by : <%=items.owner[0].username%></i></p>
     <h5 class="card-title"><%=items.title%></h5>

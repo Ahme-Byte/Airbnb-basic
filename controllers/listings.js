@@ -40,9 +40,11 @@ module.exports.new= (req,res)=>{
 module.exports.post=async (req,res)=>{
     const new_listing=new listing(req.body.docu);
       new_listing.owner=req.user._id;
-      let url=req.file.path;
-      let filename=req.file.filename;
-      new_listing.image={url,filename};
+      new_listing.image=req.files.map(file=>({
+        url:file.path,
+        filename:file.filename
+
+      }))
       let {location,country}=req.body.docu;
       let place=`${location},${country}`;
       let geoUrl=`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(place)}`;
