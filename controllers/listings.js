@@ -22,6 +22,11 @@ module.exports.home=async (req,res)=>{
       {$sort:{countReview:-1}},
       {$limit:20}
     ]);
+    items.forEach(item=>{ 
+       if (item.image && !Array.isArray(item.image)){
+      item.image=[item.image];
+    }})
+  
     return res.render('index',{items,destination,category});
   }
   if(category){

@@ -21,8 +21,8 @@ app.engine('ejs',engine);
 app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 
-//const url='mongodb://127.0.0.1:27017/wanderlast';
-const url='mongodb+srv://ahmipersonal05_db_user:fireFree%4001wanderlust@cluster0.qpst8rv.mongodb.net/wanderlast?retryWrites=true&w=majority'
+const url='mongodb://127.0.0.1:27017/wanderlast';
+//const url='mongodb+srv://ahmipersonal05_db_user:fireFree%4001wanderlust@cluster0.qpst8rv.mongodb.net/wanderlast?retryWrites=true&w=majority'
 
 //packages Middlewires
 app.use(express.urlencoded({extended:true}));
